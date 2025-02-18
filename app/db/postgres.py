@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = settings.POSTGRES_URL
+DATABASE_URL = os.getenv("POSTGRES_URL")
 engine = create_async_engine(DATABASE_URL,echo= True)
 
 sync_engine = engine.sync_engine
@@ -23,7 +23,7 @@ def after_execute(conn, cursor,statement,parameters,context,executemany):
 async def check_postgres():
     """check if database is online"""
     try:
-        conn = await asyncpg.connect(settings.POSTGRES_PLAIN_URL)
+        conn = await asyncpg.connect(os.getenv("POSTGRES_PLAIN_URL"))
         await conn.execute("SELECT 1")
         await conn.close()
         return {"status":"ok"}
