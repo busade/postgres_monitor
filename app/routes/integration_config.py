@@ -32,19 +32,11 @@ json_integration={
       },
 
       {
-        "label": "Time interval",
+        "label": "interval",
         "type": "dropdown",
         "required": True,
-        "default": "30 sec",
-        "options": [
-           "30 seconds"
-          "1 minute",
-          "5 minutes",
-          "10 minutes",
-          "30 minutes",
-          "45 minutes",
-          "1 hour"
-        ]
+        "default": "* * * * *",
+        
       }
     ],
     "target_url": "https://ping.telex.im/v1/webhooks/01951b88-2355-795a-88d6-72234ed38559",
