@@ -1,8 +1,9 @@
-from fastapi import FastAPI,Request,BackgroundTasks
+from fastapi import APIRouter,Request,BackgroundTasks
+from fastapi.responses import JSONResponse
 from .telex_monitor import MonitorPayload,monitor_task
 
 
-app = FastAPI
+app = APIRouter()
 json_integration={
   "data": {
     "date": {
@@ -53,7 +54,7 @@ json_integration={
 
 @app.get("/integrated")
 def get_integrated_json(request:Request):
-  return json_integration
+  return JSONResponse(json_integration)
 
 
 @app.post("/tick", status_code=202)
