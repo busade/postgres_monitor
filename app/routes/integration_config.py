@@ -32,7 +32,7 @@ json_integration={
       },
 
       {
-        "label": "interval",
+        "label": "Interval",
         "type": "dropdown",
         "required": True,
         "default": "* * * * *",
