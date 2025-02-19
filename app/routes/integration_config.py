@@ -40,7 +40,7 @@ json_integration={
       }
     ],
     "target_url": "https://ping.telex.im/v1/webhooks/01951b88-2355-795a-88d6-72234ed38559",
-    "tick_url": "https://postgres-monitor.onrender.com/api/v1/tick"
+    "tick_url": "https://postgres-monitor.onrender.com/tick"
   }
 }
 
