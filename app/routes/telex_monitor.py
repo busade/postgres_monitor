@@ -20,7 +20,7 @@ async def check_site_status(site: str) -> str:
         async with httpx.AsyncClient() as client:
             response = await client.get(site, timeout=10)
             if response.status_code < 400:
-                return None
+                return response
             return f"{site} is down (status {response.status_code})"
     except Exception as e:
         return f"{site} check failed: {str(e)}"
