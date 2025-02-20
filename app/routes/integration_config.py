@@ -23,7 +23,7 @@ json_integration={
       "Database Monitoring"
     ],
     "author": "Adesola",
-    "integration_category": "Perfomance Monitoring",
+    "integration_category": "Performance Monitoring",
     "settings": [
       {
         "label":"site",
