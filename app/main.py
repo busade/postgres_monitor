@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from .routes.health import router as health_router
 from .routes.integration_config import app as integration_router
+from .routes.telex_monitor import app as monitor_router
 from fastapi.middleware.cors import CORSMiddleware
 from .core.config import Settings
 
@@ -14,8 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(integration_router)
-app.include_router(health_router,prefix="/api/v1")
-
+app.router.include_router(monitor_router)
 
 @app.get('/')
 def home ():
