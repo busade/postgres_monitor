@@ -26,12 +26,47 @@ json_integration={
     "integration_category": "Performance Monitoring",
     "settings": [
       {
-        "label":"site",
+        "label":"If site is active",
         "type":"text",
         "required":True,
         "default":"https://postgres-monitor.onrender.com/api/v1"
       },
-
+      {
+         "label": "postgres info",
+         "type": "text", 
+         "required": True, 
+         "default": "https://postgres-monitor.onrender.com/api/v1/health"
+      },
+      {
+         "label": "status",
+         "type": "text", 
+         "required": True, 
+         "default": "https://postgres-monitor.onrender.com/api/v1/health/postgres"
+      },
+      {
+         "label": "Long running queries greater than 10s",
+         "type": "text", 
+         "required": True, 
+         "default": "https://postgres-monitor.onrender.com/api/v1/long_running_queries"
+      },
+      {
+         "label": "site_db_size", 
+         "type": "text",
+         "required": True, 
+         "default": "https://postgres-monitor.onrender.com/api/v1/database_size"
+      },
+      {
+         "label": "No of connections", 
+         "type": "text",
+         "required": True, 
+         "default": "https://postgres-monitor.onrender.com/api/v1/active_connections"
+      },
+      {
+       "label": "site_active_conn", 
+       "type": "text", 
+       "required": True, 
+       "default": "https://postgres-monitor.onrender.com/api/v1/active_connections"
+      },
       {
         "label": "Interval",
         "type": "dropdown",
