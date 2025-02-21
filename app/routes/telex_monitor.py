@@ -12,7 +12,7 @@ class Setting(BaseModel):
     required: bool
     default: str
 
-class MonitorPayload(BaseModel):
+class MonitorPayLoad(BaseModel):
     channel_id: str
     return_url: str
     settings: List[Setting]
@@ -33,25 +33,23 @@ async def check_site_status(site: str) -> Dict[str, str]:
         end_time = time.time()
         return {"site": site, "error": str(e), "response_time": round(end_time - start_time, 4)}
 
-async def monitor_task(payload: MonitorPayload):
+async def monitor_task(payload: MonitorPayLoad):
     """Background task to monitor database and send results."""
     sites = [s.default for s in payload.settings if s.label.startswith("site")]
     results = await asyncio.gather(
         *(check_site_status(site) for site in sites),
-        check_database_connection(),
-        get_database_size(),
-        get_active_connections(),
-        get_long_running_queries()
+        check_database_connection(payload),
+        get_database_size(payload),
+        get_active_connections(payload),
+        get_long_running_queries(payload)
     )
-    results_text =  "\n".join(str(result) for result in results)
-    
+    results_text = "\n".join(results)
     telex_format = {
         "message": results_text,
         "username": "DB Monitor",
         "event_name": "Database Check",
         "status": "error" if "Error" in results_text else "success"
     }
-    
     async with httpx.AsyncClient() as client:
         await client.post(payload.return_url, json=telex_format, headers={"Content-Type": "application/json"})
 
