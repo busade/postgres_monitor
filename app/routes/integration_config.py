@@ -26,7 +26,7 @@ json_integration={
     "integration_category": "Performance Monitoring",
     "settings": [
       {
-        "label":"If site is active",
+        "label":"site",
         "type":"text",
         "required":True,
         "default":"https://postgres-monitor.onrender.com/"
