@@ -4,44 +4,7 @@ from .telex_monitor import MonitorPayload,monitor_task
 
 
 app = APIRouter()
-{
-  "data": {
-    "date": {
-      "created_at": "2025-02-21",
-      "updated_at": "2025-02-21"
-    },
-    "descriptions": {
-      "app_name": "Postgresql Performance  Monitor",
-      "app_description": "This integration monitors the performance of Postgresql Database",
-      "app_logo": "https://postgres-monitor.onrender.com",
-      "app_url": "https://postgres-monitor.onrender.com",
-      "background_color": "#fff"
-    },
-    "is_active": True,
-    "integration_type": "interval",
-    "integration_category": "Performance Monitoring",
-    "key_features": [
-      "perfomance monitoring"
-    ],
-    "author": "Adesola",
-    "settings": [
-      {
-        "label": "Time interval",
-        "type": "text",
-        "required": True,
-        "default": "*/5 * * * *"
-      },
-      {
-        "label": "database",
-        "type": "text",
-        "required": True,
-        "default": "\"\""
-      }
-    ],
-    "target_url": "Null",
-    "tick_url": "https://postgres-monitor.onrender.com/tick_url"
-  }
-}
+  
 json_integration={
   "data": {
     "date": {
@@ -64,19 +27,16 @@ json_integration={
     "integration_category": "Performance Monitoring",
     "settings": [
       {
-        "label":"site",
-        "type":"text",
-        "required":True,
-        "default":"https://postgres-monitor.onrender.com/"
-      },
-      
-      
-      {
-        "label": "Interval",
-        "type": "dropdown",
+        "label": "database",
+        "type": "text",
         "required": True,
-        "default": "*/4 * * * *",
-        
+        "default": "" 
+      },
+     {
+        "label": "Interval",
+        "type": "text",
+        "required": True,
+        "default": "*/5 * * * *"
       }
     ],
     "target_url": "",

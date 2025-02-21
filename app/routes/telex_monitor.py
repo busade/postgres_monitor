@@ -17,27 +17,10 @@ class MonitorPayLoad(BaseModel):
     return_url: str
     settings: List[Setting]
 
-async def check_site_status(site: str) -> Dict[str, str]:
-    start_time = time.time()
-    try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(site, timeout=10)
-            end_time = time.time()
-            return {
-                "site": site,
-                "status_code": response.status_code,
-                "response": response.text,
-                "response_time": round(end_time - start_time, 4)
-            }
-    except Exception as e:
-        end_time = time.time()
-        return {"site": site, "error": str(e), "response_time": round(end_time - start_time, 4)}
 
 async def monitor_task(payload: MonitorPayLoad):
     """Background task to monitor database and send results."""
-    sites = [s.default for s in payload.settings if s.label.startswith("site")]
     results = await asyncio.gather(
-        *(check_site_status(site) for site in sites),
         check_database_connection(payload),
         get_database_size(payload),
         get_active_connections(payload),
