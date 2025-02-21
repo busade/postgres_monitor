@@ -43,7 +43,7 @@ async def monitor_task(payload: MonitorPayload):
         get_active_connections(),
         get_long_running_queries()
     )
-    results_text = "\n".join(results)
+    results_text =  "\n".join(str(result) for result in results)
     
     telex_format = {
         "message": results_text,
