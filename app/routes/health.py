@@ -10,7 +10,7 @@ load_dotenv()
 
 
 # Database connection settings
-DATABASE_URL = os.getenv("POSTGRES_URL")
+DATABASE_URL = os.getenv("POSTGRES_PLAIN_URL")
 engine = create_async_engine(DATABASE_URL, echo=True)
 
 class MonitorPayload(BaseModel):
