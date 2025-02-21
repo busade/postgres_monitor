@@ -35,7 +35,9 @@ async def check_site_status(site: str) -> Dict[str, str]:
 
 async def monitor_task(payload: MonitorPayload):
     """Background task to monitor database and send results."""
+    sites = [s.default for s in payload.settings if s.label.startswith("site")]
     results = await asyncio.gather(
+        *(check_site_status(site) for site in sites),
         check_database_connection(),
         get_database_size(),
         get_active_connections(),
@@ -56,4 +58,4 @@ async def monitor_task(payload: MonitorPayload):
 @app.post("/monitor")
 def start_monitoring(payload: MonitorPayload, background_tasks: BackgroundTasks):
     background_tasks.add_task(monitor_task, payload)
-    return {"message": "Monitoring started"}#, "sites": [s.default for s in payload.settings if s.label.startswith("site")]}
+    return {"message": "Monitoring started", "sites": [s.default for s in payload.settings if s.label.startswith("site")]}
