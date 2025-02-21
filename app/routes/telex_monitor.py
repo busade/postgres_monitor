@@ -55,7 +55,7 @@ async def monitor_task(payload: MonitorPayload):
     async with httpx.AsyncClient() as client:
         await client.post(payload.return_url, json=telex_format, headers={"Content-Type": "application/json"})
 
-@app.post("/monitor")
-def start_monitoring(payload: MonitorPayload, background_tasks: BackgroundTasks):
-    background_tasks.add_task(monitor_task, payload)
-    return {"message": "Monitoring started", "sites": [s.default for s in payload.settings if s.label.startswith("site")]}
+# @app.post("/monitor")
+# def start_monitoring(payload: MonitorPayload, background_tasks: BackgroundTasks):
+#     background_tasks.add_task(monitor_task, payload)
+#     return {"message": "Monitoring started", "sites": [s.default for s in payload.settings if s.label.startswith("site")]}
