@@ -1,6 +1,6 @@
 from fastapi import APIRouter,Request,BackgroundTasks
 from fastapi.responses import JSONResponse
-from .telex_monitor import MonitorPayload,monitor_task
+from .telex_monitor import MonitorPayLoad,monitor_task
 
 
 app = APIRouter()
@@ -51,7 +51,7 @@ def get_integrated_json(request:Request):
 
 
 @app.post("/tick", status_code=202)
-def monitor(payload: MonitorPayload, background_tasks: BackgroundTasks):
+def monitor(payload: MonitorPayLoad, background_tasks: BackgroundTasks):
     background_tasks.add_task(monitor_task, payload)
     return {"status": "success"}
 
